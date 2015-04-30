@@ -5,8 +5,12 @@ import (
 	"testing"
 )
 
+var (
+	testmessage = "eyJwIjoiZEdWemRDQnRaWE56WVdkbCIsInMiOiJZbTVpYVUxUmRrNURkVEUzY0U4clFVRkVaV1Z5Wnk5bmFYZFZjV3RPTUVweVFYTlRkRWRpUVUxcVVUMD0ifQ=="
+	Secret      = "test"
+)
+
 func TestEncode(t *testing.T) {
-	Secret = "test"
 
 	// Initialize SignedMessage struct with secret
 	key := SignedMessage{}
@@ -22,6 +26,24 @@ func TestEncode(t *testing.T) {
 
 	assert.NoError(t, err, "should be no error")
 
-	assert.Equal(t, "eyJwIjoiZEdWemRDQnRaWE56WVdkbCIsInMiOiJZbTVpYVUxUmRrNURkVEUzY0U4clFVRkVaV1Z5Wnk5bmFYZFZjV3RPTUVweVFYTlRkRWRpUVUxcVVUMD0ifQ==", signedkey, "they should be equal")
+	assert.Equal(t, testmessage, signedkey, "they should be equal")
+
+}
+
+func TestDecode(t *testing.T) {
+
+	// Initialize SignedMessage struct with secret
+	key := SignedMessage{}
+
+	// Decode message
+	err := message.Decode(testmessage)
+
+	assert.NoError(t, err, "should be no error")
+
+	check := message.Verify()
+
+	assert.True(t, check, "should be true")
+
+	assert.Equal(t, "test message", key.Payload, "they should be equal")
 
 }
