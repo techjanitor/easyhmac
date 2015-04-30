@@ -48,4 +48,6 @@ Decode and verify message:
 	if !check {
 		return
 	}
+	
+	payload = message.Payload
 ```
