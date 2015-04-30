@@ -5,7 +5,10 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 )
+
+var MaxSize = 1024
 
 // SignedMessage contains a payload and a signature with the hmac secret
 type SignedMessage struct {
@@ -23,6 +26,11 @@ func (sm *SignedMessage) Encode() (message string, err error) {
 	}
 
 	message = base64.URLEncoding.EncodeToString(msg)
+
+	if len(message) > MaxSize {
+		err = fmt.Errorf("Message exceeds %d bytes", MaxSize)
+		return
+	}
 
 	return
 
