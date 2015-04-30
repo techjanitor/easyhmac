@@ -10,7 +10,7 @@ import (
 // SignedMessage contains a payload and a signature with the hmac secret
 type SignedMessage struct {
 	Payload   []byte `json:"p"`
-	Signature []byte `json:"s"`
+	signature []byte `json:"s"`
 	Secret    string
 }
 
@@ -53,7 +53,7 @@ func (sm *SignedMessage) Sign() {
 	mac := hmac.New(sha256.New, []byte(sm.Secret))
 	mac.Write(sm.Payload)
 
-	sm.Signature = []byte(base64.StdEncoding.EncodeToString(mac.Sum(nil)))
+	sm.signature = []byte(base64.StdEncoding.EncodeToString(mac.Sum(nil)))
 
 }
 
@@ -65,6 +65,6 @@ func (sm *SignedMessage) Verify() bool {
 
 	expected := []byte(base64.StdEncoding.EncodeToString(mac.Sum(nil)))
 
-	return hmac.Equal(sm.Signature, expected)
+	return hmac.Equal(sm.signature, expected)
 
 }
