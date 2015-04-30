@@ -10,10 +10,10 @@ import "github.com/techjanitor/easyhmac"
 
  Encode and sign message:
 ```
+	easyhmac.Secret = "secret"
+
 	// Initialize SignedMessage struct with secret
-	key := easyhmac.SignedMessage{
-		Secret: "secret",
-	}
+	key := easyhmac.SignedMessage{}
 
 	// Add payload data
 	key.Payload = "a cool message"
@@ -32,10 +32,10 @@ import "github.com/techjanitor/easyhmac"
 Decode and verify message:
 
 ```
+	easyhmac.Secret = "secret"
+
 	// Initialize SignedMessage struct with secret
-	message := easyhmac.SignedMessage{
-		Secret: "secret",
-	}
+	message := easyhmac.SignedMessage{}
 
 	// Decode message
 	err := message.Decode(ourmessage)
