@@ -45,6 +45,6 @@ func TestDecode(t *testing.T) {
 
 	assert.True(t, check, "should be true")
 
-	assert.Equal(t, "test message", key.Payload, "they should be equal")
+	assert.Equal(t, []byte("test message"), key.Payload, "they should be equal")
 
 }
