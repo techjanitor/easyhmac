@@ -5,12 +5,11 @@ import (
 	"testing"
 )
 
-var (
-	testmessage = "eyJwIjoiZEdWemRDQnRaWE56WVdkbCIsInMiOiJZbTVpYVUxUmRrNURkVEUzY0U4clFVRkVaV1Z5Wnk5bmFYZFZjV3RPTUVweVFYTlRkRWRpUVUxcVVUMD0ifQ=="
-	Secret      = "test"
-)
+var testmessage = "eyJwIjoiZEdWemRDQnRaWE56WVdkbCIsInMiOiJZbTVpYVUxUmRrNURkVEUzY0U4clFVRkVaV1Z5Wnk5bmFYZFZjV3RPTUVweVFYTlRkRWRpUVUxcVVUMD0ifQ=="
 
 func TestEncode(t *testing.T) {
+
+	Secret = "test"
 
 	// Initialize SignedMessage struct with secret
 	key := SignedMessage{}
@@ -32,15 +31,17 @@ func TestEncode(t *testing.T) {
 
 func TestDecode(t *testing.T) {
 
+	Secret = "test"
+
 	// Initialize SignedMessage struct with secret
 	key := SignedMessage{}
 
 	// Decode message
-	err := message.Decode(testmessage)
+	err := key.Decode(testmessage)
 
 	assert.NoError(t, err, "should be no error")
 
-	check := message.Verify()
+	check := key.Verify()
 
 	assert.True(t, check, "should be true")
 
