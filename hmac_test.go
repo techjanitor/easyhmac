@@ -2,7 +2,6 @@ package easyhmac
 
 import (
 	"github.com/stretchr/testify/assert"
-	"github.com/techjanitor/easyhmac"
 	"testing"
 )
 
