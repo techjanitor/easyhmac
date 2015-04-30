@@ -6,10 +6,10 @@ import (
 )
 
 func TestEncode(t *testing.T) {
-	easyhmac.Secret = "test"
+	Secret = "test"
 
 	// Initialize SignedMessage struct with secret
-	key := easyhmac.SignedMessage{}
+	key := SignedMessage{}
 
 	// Add payload data
 	key.Payload = "test message"
