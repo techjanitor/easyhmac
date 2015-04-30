@@ -12,7 +12,7 @@ func TestEncode(t *testing.T) {
 	key := SignedMessage{}
 
 	// Add payload data
-	key.Payload = "test message"
+	key.Payload = []byte("test message")
 
 	// Create HMAC signature
 	key.Sign()
